@@ -21,28 +21,6 @@ struct ContentView: View {
     
     //Computed Property
     var outputValue: Double{
-        
-//        var outPut: Double = 0.0
-//        
-//        if inputUnit == "C" && outputUnit == "F"{
-//            outPut = (inputValue * 9/5) + 32
-//        }else if(inputUnit == "F" && outputUnit == "C"){
-//            outPut = (inputValue - 32) * 5/9
-//        }else if(inputUnit == "K" && outputUnit == "C"){
-//            outPut = inputValue - 273.15
-//        }else if(inputUnit == "C" && outputUnit == "K"){
-//            outPut = inputValue + 273.15
-//        }else if(inputUnit == "K" && outputUnit == "F"){
-//            outPut = (inputValue - 273.15) * 9/5 + 32
-//        }else if(inputUnit == "F" && outputUnit == "K"){
-//            outPut = (inputValue - 32) * 5/9 + 273.15
-//        }
-//        else{
-//            outPut = inputValue
-//        }
-//        
-//        return outPut
-        
         switch inputUnit{
         case TemperatureUnit.Celsius:
             if (outputUnit == TemperatureUnit.Fahrenheit){
