@@ -3,7 +3,7 @@
 //  WeSplit
 //
 //  Created by Soumyadeep Chatterjee on 9/30/24.
-//
+
 //Check Splitting App:
 //1. users need to be able to enter the cost of the check
 //2. no of people sharing the cost
@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var checkAmount = 0.0
     @State private var numberOfPeople = 1
     @State private var tipPercentage = 0
+    
+    @FocusState private var amountIsFocused : Bool
     
     //Choice of tips
     let tipPercentages = [5, 10, 15, 20,0]
@@ -38,6 +40,7 @@ struct ContentView: View {
                 Section{
                     TextField("Amount", value: $checkAmount, format: .currency(code:Locale.current.currency?.identifier ?? "USD"))
                         .keyboardType(.decimalPad)
+                        .focused($amountIsFocused)
                 }
                 Section("How much tip you want to leave?"){
                     Picker("Tip Percentage", selection: $tipPercentage){
@@ -57,6 +60,13 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("WeSplit")
+            .toolbar{
+                if amountIsFocused{
+                    Button("Done"){
+                        amountIsFocused = false
+                    }
+                }
+            }
             Section{
                 Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
             }
