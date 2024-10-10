@@ -18,16 +18,37 @@ struct ContentView: View {
 
     var body: some View {
         ZStack{
-            LinearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottom)
+            RadialGradient(stops: [
+                .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.3),
+                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
+            ], center: .top, startRadius: 200, endRadius: 400)
                 .ignoresSafeArea()
             VStack{
-                Text("Tap the flag off")
-                    .font(.subheadline.weight(.heavy))
+                Spacer()
+                Text("Guess the Flag")
+                    .font(.largeTitle.weight(.bold))
                     .foregroundStyle(.white)
-                Text(countries[correctAnswer])
-                    .font(.largeTitle.weight(.semibold))
+
+                VStack(spacing:15){
+                    Text("Tap the flag off")
+                        .font(.subheadline.weight(.heavy))
+                        .foregroundStyle(.secondary)
+                    Text(countries[correctAnswer])
+                        .font(.largeTitle.weight(.semibold))
+//                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .background(.regularMaterial)
+                .clipShape(.rect(cornerRadius: 20))
+                Spacer()
+                Spacer()
+                Text("Score: \(userScore)")
                     .foregroundStyle(.white)
-            }
+                    .font(.title.bold())
+                Spacer()
+            }.padding()
+            
         }
         .alert(scoreTitle, isPresented: $showingScore){
             Button("continue", action: askQuestion)
